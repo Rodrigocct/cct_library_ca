@@ -7,7 +7,7 @@ package cctlibrary.utils;
 
 /**
  *
- * @author alberto
+ * @author rodrigo
  */
 public class MyOwnQueue {
     

@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author rodrigo
  */
-public class Book implements Serializable{
+public class Book implements Serializable {
+
     String id;
     String authorFirstName;
     String authorLastName;
@@ -62,7 +63,13 @@ public class Book implements Serializable{
     public String toString() {
         return id + "," + authorFirstName + "," + authorLastName + "," + bookTitle + "," + genre;
     }
+
+    public int compareToByAuthor(Book book) {
+        return (this.getAuthorFirstName() + " " + this.authorLastName).compareTo(book.getAuthorFirstName() + " " + book.authorLastName);
+    }
     
-    
-    
+    public int compareToByTitle(Book book) {
+        return (this.getBookTitle()).compareTo(book.getBookTitle());
+    }
+
 }

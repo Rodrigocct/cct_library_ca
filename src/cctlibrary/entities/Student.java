@@ -6,17 +6,17 @@
 package cctlibrary.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author rodrigo
  */
 public class Student implements Serializable{
-    int id;
+    int id;    
     String firstname;
     String surname;
+    String documentNumber;
     String genre;
-    Date birthday;
+    String birthday;
     
 }

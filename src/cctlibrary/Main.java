@@ -9,8 +9,10 @@ import cctlibrary.data.Books;
 import cctlibrary.entities.Book;
 import cctlibrary.enums.BookSearchEnum;
 import cctlibrary.utils.InputUtilities;
-import cctlibrary.utils.SearchingUtils;
+import cctlibrary.utils.MySearchingUtils;
+import cctlibrary.utils.MySortingUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -72,18 +74,14 @@ public class Main {
                         System.out.println("Search a book by title and/or author name.");
                         System.out.println("------------------------------------------");
 
-                        for (Book b : books.getListBooks()) {
-                            System.out.println(b.toString());
-                        }
-
                         // Para la busqueda, primero se imprime las opciones
                         System.out.println(BookSearchEnum.listAllOptions());
                         // se espera que el usuario seleccione su opcion
-                        int option = myInput.getUserInt("Input search option --> ", 1, BookSearchEnum.values().length);
-                        switch (option) {
+                        int searchOption = myInput.getUserInt("Input search option --> ", 1, BookSearchEnum.values().length);
+                        switch (searchOption) {
                             case 1:
                                 String authorname = myInput.getUserText("Input Author name --> ");
-                                int linearSearchBook = new SearchingUtils().linearSearchBookByAuthor(books.getListBooks(), authorname);
+                                int linearSearchBook = new MySearchingUtils().linearSearchBookByAuthor(books.getListBooks(), authorname);
                                 if (linearSearchBook > -1) {
                                     System.out.println("Book match with --> " + books.getListBooks().get(linearSearchBook).toString());
                                 } else {
@@ -92,7 +90,7 @@ public class Main {
                                 break;
                             case 2:
                                 String title = myInput.getUserText("Input title --> ");
-                                ArrayList<Book> booksByTitle = new SearchingUtils().linearSearchBookByTitle(books.getListBooks(), title);
+                                ArrayList<Book> booksByTitle = new MySearchingUtils().linearSearchBookByTitle(books.getListBooks(), title);
                                 if (!booksByTitle.isEmpty()) {
                                     System.out.println("Book(s) match(s) for title --> " + title);
                                     booksByTitle.forEach((b) -> {
@@ -103,16 +101,38 @@ public class Main {
                                 }
                                 break;
                             default:
-                                // Si la opcion seleccionada no corresponde a ninguna de la lista Ej. El usuario ingresa 9
+                                // Si la opcion seleccionada no corresponde a ninguna de la lista
                                 System.out.println("Input option incorrect");
                                 break;
                         }
                         break;
                     case 2:
-                        System.out.println("\t##############################");
-                        System.out.println("\t####### STAFF BY AREA ########");
-                        System.out.println("\t##############################");
-
+                        System.out.println("-------------------------------------------------------------");
+                        System.out.println("List all books by title and/or author name alphabetical order");
+                        System.out.println("-------------------------------------------------------------");
+                        Book[] list;
+                        list = books.getListBooks().toArray(new Book[books.getListBooks().size()]);
+                        MySortingUtils ms = new MySortingUtils();
+                        
+                        // Para la busqueda, primero se imprime las opciones
+                        System.out.println(BookSearchEnum.listAllOptions());
+                        // se espera que el usuario seleccione su opcion
+                        int sortOption = myInput.getUserInt("Input sorting option --> ", 1, BookSearchEnum.values().length);
+                        switch (sortOption) {
+                            case 1:
+                                 ms.bubbleSortByAuthor(list);
+                                break;
+                            case 2:
+                                 ms.bubbleSortByTitle(list);
+                                break;
+                            default:
+                                // Si la opcion seleccionada no corresponde a ninguna de la lista 
+                                System.out.println("Input option incorrect");
+                                break;
+                        }
+                        for (int i = 0; i<list.length; i++) {
+                            System.out.println(list[i].toString());
+                        }
                         break;
 
                     case 3:
