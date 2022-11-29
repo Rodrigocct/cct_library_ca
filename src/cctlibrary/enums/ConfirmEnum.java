@@ -10,27 +10,27 @@ package cctlibrary.enums;
  * @author rodrigo
  * Enum Books search Options
  */
-public enum BookSearchEnum {
-    AUTHOR_NAME {
+public enum ConfirmEnum {
+    YES {
         @Override
         public String toString() {
         
-            return "AUTHOR NAME";
+            return "[YES]";
         }        
     },
-    TITLE {
+    NO {
         @Override
         public String toString() {
         
-            return "TITLE";
+            return "[NO]";
         }        
     };
     // Metodo que recupera una opcion de busqueda especifica en funcion a su posicion en el array
-    public static BookSearchEnum getOption(int option){
+    public static ConfirmEnum getOption(int option){
         
-        BookSearchEnum[] searchOption = BookSearchEnum.values();
+        ConfirmEnum[] confirmOption = ConfirmEnum.values();
         
-        return searchOption[option];
+        return confirmOption[option];
     }
     
     // Metodo que retorna la lista completa de opciones de filtro
@@ -40,7 +40,7 @@ public enum BookSearchEnum {
         
         int num = 1; //start at 1 because starting at 0 makes no sense to humans :)
         //loop through all values in the enum
-        for(BookSearchEnum e: values()){            
+        for(ConfirmEnum e: values()){            
             menu = menu + "\n" + num + ")\t" + e.toString();
             num++;
         }        

@@ -21,9 +21,7 @@ public abstract class File {
     public File() {
     }
 
-    public abstract void openFile();
     public abstract void loadData();
     public abstract void saveData();
-    public abstract void closeFile();
 
 }

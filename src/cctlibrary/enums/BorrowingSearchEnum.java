@@ -8,27 +8,27 @@ package cctlibrary.enums;
 /**
  *
  * @author rodrigo
- * Enum Books search Options
+ * Enum Students search Options
  */
-public enum BookSearchEnum {
-    AUTHOR_NAME {
+public enum BorrowingSearchEnum {
+    REGISTER {
         @Override
         public String toString() {
         
-            return "AUTHOR NAME";
+            return "REGISTER BORROWING";
         }        
     },
-    TITLE {
+    RETURN {
         @Override
         public String toString() {
         
-            return "TITLE";
+            return "REGISTER RETURN";
         }        
     };
     // Metodo que recupera una opcion de busqueda especifica en funcion a su posicion en el array
-    public static BookSearchEnum getOption(int option){
+    public static BorrowingSearchEnum getOption(int option){
         
-        BookSearchEnum[] searchOption = BookSearchEnum.values();
+        BorrowingSearchEnum[] searchOption = BorrowingSearchEnum.values();
         
         return searchOption[option];
     }
@@ -40,7 +40,7 @@ public enum BookSearchEnum {
         
         int num = 1; //start at 1 because starting at 0 makes no sense to humans :)
         //loop through all values in the enum
-        for(BookSearchEnum e: values()){            
+        for(BorrowingSearchEnum e: values()){            
             menu = menu + "\n" + num + ")\t" + e.toString();
             num++;
         }        

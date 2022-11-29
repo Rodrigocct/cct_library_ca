@@ -119,9 +119,9 @@ public class InputUtilities {
         
         do{
             
-            System.out.println(prompt);
+            System.out.print(prompt);
             
-            System.out.println("You must enter a number bigger than " + minValue);
+//            System.out.println("You must enter a number bigger than " + minValue);
             
             try {
                 userInput = Integer.parseInt(myKB.nextLine());

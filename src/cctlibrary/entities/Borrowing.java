@@ -6,17 +6,35 @@
 package cctlibrary.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author rodrigo
  */
 public class Borrowing implements Serializable{
-    int id;
-    Date borrowingDate;
-    Date borrowingReturnDate;
-    Book book;
-    Student student;
+
+    String bookId;
+    int studentId;
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    @Override
+    public String toString() {
+        return bookId + "," + studentId;
+    }
     
 }

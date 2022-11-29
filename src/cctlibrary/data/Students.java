@@ -5,7 +5,7 @@
  */
 package cctlibrary.data;
 
-import cctlibrary.entities.Book;
+import cctlibrary.entities.Student;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
@@ -20,22 +20,23 @@ import java.util.logging.Logger;
  *
  * @author rodrigo
  */
-public class Books extends File {
+public class Students extends File {
 
-    ArrayList<Book> fileData = new ArrayList<>();
+    ArrayList<Student> fileData = new ArrayList<>();
 
-    public Books() {
-        this.fileName = "data/BOOKS_DATA.csv";
+    public Students() {
+        this.fileName = "data/STUDENTS_DATA.csv";
     }
 
-    public ArrayList<Book> getFileData() {
+    public ArrayList<Student> getFileData() {
         return fileData;
     }
 
-    public void setFileData(ArrayList<Book> fileData) {
+    public void setFileData(ArrayList<Student> fileData) {
         this.fileData = fileData;
     }
     
+
     @Override
     public void loadData() {
         String[] data;
@@ -44,20 +45,22 @@ public class Books extends File {
             
             String contentLine = readFile.readLine();
             while (contentLine != null) {
-                Book x = new Book();
+                Student x = new Student();
                 data = contentLine.split(",");
-                x.setId(data[0]);
-                x.setAuthorFirstName(data[1]);
-                x.setAuthorLastName(data[2]);
-                x.setBookTitle(data[3]);
+                x.setId(Integer.valueOf(data[0]));
+                x.setFirstname(data[1]);
+                x.setSurname(data[2]);
+                x.setDocumentNumber(data[3]);
                 x.setGenre(data[4]);
+                x.setBirthday(data[5]);
                 this.fileData.add(x);
                 contentLine = readFile.readLine();
             }
         } catch (IOException ex) {
-            Logger.getLogger(Books.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Students.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @Override
     public void saveData() {
         try {
@@ -70,4 +73,5 @@ public class Books extends File {
             Logger.getLogger(Borrowings.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+
 }

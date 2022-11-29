@@ -6,14 +6,17 @@
 package cctlibrary.utils;
 
 import cctlibrary.entities.Book;
+import cctlibrary.entities.Student;
 import java.util.ArrayList;
-
 /**
  *
  * @author rodrigo
  */
 public class MySearchingUtils {
 
+    /*
+        BOOKS SECTION
+    */
     public int linearSearchBookByAuthor(ArrayList<Book> array, String target) {
         for (int i = 0; i < array.size(); i++) {
             String authorName = array.get(i).getAuthorFirstName() + " " + array.get(i).getAuthorLastName();
@@ -33,5 +36,38 @@ public class MySearchingUtils {
             }
         }
         return result;
+    }
+    
+    /*
+        STUDENTS SECTION
+    */    
+    public int linearSearchStudentByName(ArrayList<Student> array, String target) {
+        for (int i = 0; i < array.size(); i++) {
+            String name = array.get(i).getFirstname() + " " + array.get(i).getSurname();
+            if (name.equalsIgnoreCase(target)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public int binarySearch(ArrayList<Student> array, int target) {        
+        int start = 0;
+        int end = array.size() - 1;
+        int mid; 
+        
+        while(start<=end){
+            mid = (start + end)/2;            
+            if(array.get(mid).getId()== target){                
+                return mid;                
+            }else if(array.get(mid).getId()<target){
+                start = mid + 1;
+                
+            }else{
+                end = mid - 1;
+            }
+        }
+        return -1;
+
     }
 }
