@@ -18,11 +18,12 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
+//an extension of the principal class file so it inherit the methods and atributes.
 public class Borrowings extends File {
 
-    HashSet<Borrowing> fileData = new HashSet<>();
+    HashSet<Borrowing> fileData = new HashSet<>();//we use HashSet to avoid borrowings duplication
 
     public Borrowings() {
         this.fileName = "data/BORROWINGS_DATA.csv";
@@ -36,7 +37,7 @@ public class Borrowings extends File {
         this.fileData = fileData;
     }
       
-
+//to read the data from borrowing entitie and storage in fileData
     @Override
     public void loadData() {
         String[] data;
@@ -58,12 +59,14 @@ public class Borrowings extends File {
     }
 
     @Override
+    // to register the borrowing
     public void saveData() {
         try {
             saveFile = new DataOutputStream(new FileOutputStream(fileName));
             for (Borrowing xx :this.getFileData()){
-                saveFile.writeBytes(xx.getBookId()+","+xx.getStudentId()+"\n");
-            }            
+                saveFile.writeBytes(xx.getBookId()+","+xx.getStudentId()+"\n");//read and save the data in memory
+            } 
+           // to write and register the borrowing inside the file borrowings
             saveFile.flush();
             saveFile.close();
         } catch (FileNotFoundException ex) {

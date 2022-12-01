@@ -10,11 +10,15 @@ import java.io.Serializable;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
 public class Reservation implements Serializable{
-    String bookId;
-    MyOwnQueue students;
+    String bookId;// to know the book that is the student wants to reservate
+    MyOwnQueue students;/*to know who is the student in the queue, one book can have 
+many student in waiting list, so with MyOwnQueue we make sure that the first on the 
+queue has the priority.*/
+
+//MyOwnQueue is our own implementation we got it from in class examples
 
     public Reservation() {
         this.students = new MyOwnQueue(20);

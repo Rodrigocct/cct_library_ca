@@ -2,8 +2,10 @@ package cctlibrary.utils;
 
 /**
  *
- * @author aldan
+ * @author rodrigo & anastasiia
  */
+//we got this method from the exaples done in class
+//here we implement the method that we define in ArrayQueue
 public class MyOwnQueue implements ArrayQueue {
 
     private String[] data;
@@ -55,21 +57,25 @@ public class MyOwnQueue implements ArrayQueue {
     }
 
     @Override
+    //to know the first in the queue
     public String First() {
         return data[0];
     }
 
     @Override
+   //to know the last in the queue
     public String Last() {
         return data[last];
     }
 
     @Override
+    //to get know the size of the queue
     public int size() {
         return queueSize;
     }
 
     @Override
+    //to know if the queue is empty or  not
     public boolean isEmpty() {
         return queueSize == 0;
     }

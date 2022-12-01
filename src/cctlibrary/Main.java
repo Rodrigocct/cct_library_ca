@@ -27,10 +27,12 @@ import java.util.Scanner;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
 public class Main {
 
+    
+   //defines variables that we use accross the proyect
     private Books books;
     private Students students;
     private Borrowings borrowings;
@@ -46,10 +48,11 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+   
     public static void main(String[] args) {
         new Main();
     }
-
+//constructor
     public Main() {
         loadDatabase();
         init();
@@ -57,10 +60,9 @@ public class Main {
 
     public void init() {
 
-        // Clase utilizada para controlar y validar el input del usuario.
-        // variable para leer la opcion seleccionada por el usuario.
+        // This is the main menu.
         int listOption;
-        //variable para controlar el bucle while, que no finaliza si el usuario no seleciona la opcion 9) EXIT
+        //the variable exitOption is to control the loop while, it won't finish unless the user imput is 7  (EXIT)
         boolean exitOption = false;
         while (!exitOption) {
             try {
@@ -68,10 +70,10 @@ public class Main {
                 Scanner s = new Scanner(System.in);
                 System.out.println("");
                 System.out.println("   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ MENU SYSTEM $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                System.out.println("1) Search for a specific book by title and/or author name");
-                System.out.println("2) List all books by title and/or author name alphabetical order");
-                System.out.println("3) Search for a specific student by name and/or ID");
-                System.out.println("4) List all students by alphabetical name and/or ID order");
+                System.out.println("1) Search for a specific book by title or author name");
+                System.out.println("2) List all books by title or author name in alphabetical order");
+                System.out.println("3) Search for a specific student by name or ID");
+                System.out.println("4) List all students by alphabetical name or ID order");
                 System.out.println("5) Borrowing a book");
                 System.out.println("6) For a specific student, list the books that they have borrowed");
                 System.out.println("7) Exit");
@@ -83,15 +85,15 @@ public class Main {
                 switch (listOption) {
                     case 1:
                         System.out.println("------------------------------------------");
-                        System.out.println("Search a book by title and/or author name");
+                        System.out.println("Search a book by title or author name");
                         System.out.println("------------------------------------------");
-
+                  //the method bookSearch is called
                         bookSearch();
                         enterKey();
                         break;
                     case 2:
                         System.out.println("-------------------------------------------------------------");
-                        System.out.println("List all books by title and/or author name alphabetical order");
+                        System.out.println("List all books by title or author name alphabetical order");
                         System.out.println("-------------------------------------------------------------");
 
                         listBooks();
@@ -100,7 +102,7 @@ public class Main {
 
                     case 3:
                         System.out.println("-----------------------------------------------");
-                        System.out.println("Search for a specific student by name and/or ID");
+                        System.out.println("Search for a specific student by name or ID");
                         System.out.println("-----------------------------------------------");
 
                         searchStudents();
@@ -109,7 +111,7 @@ public class Main {
 
                     case 4:
                         System.out.println("------------------------------------------------------");
-                        System.out.println("List all students by alphabetical name and/or ID order");
+                        System.out.println("List all students by alphabetical name or ID order");
                         System.out.println("------------------------------------------------------");
 
                         listStudents();
@@ -140,7 +142,7 @@ public class Main {
                         break;
 
                     default:
-                        System.out.println("Selected option don't exists");
+                        System.out.println("Selected option doesn't exist");
                         break;
                 }
 
@@ -149,7 +151,7 @@ public class Main {
             }
         }
     }
-
+//to load the data that is stored in the entities
     public void loadDatabase() {
         books = new Books();
         books.loadData();
@@ -165,18 +167,18 @@ public class Main {
     }
 
     public void enterKey() {
-        myInput.getUserText("Press space to display Menu... ");
+        myInput.getUserText("Please imput any number to display Menu... ");
     }
 
     public void bookSearch() {
         
-        // Para la busqueda, primero se imprime las opciones
+        // before search, print the options first,
         System.out.println(BookSearchEnum.listAllOptions());
-        // se espera que el usuario seleccione su opcion
+        // user is expected to select their option
         int bookSearchOption = myInput.getUserInt("Select option --> ", 1, BookSearchEnum.values().length);
         switch (bookSearchOption) {
             case 1:
-                String authorname = myInput.getUserText("Input Author name --> ");
+                String authorname = myInput.getUserText("Input Author full name --> ");
                 int linearSearchBook = mySearchUtil.linearSearchBookByAuthor(books.getFileData(), authorname);
                 if (linearSearchBook > -1) {
                     System.out.println("Book match with --> " + books.getFileData().get(linearSearchBook).toString());
@@ -197,8 +199,8 @@ public class Main {
                 }
                 break;
             default:
-                // Si la opcion seleccionada no corresponde a ninguna de la lista
-                System.out.println("Option incorrect");
+                // If the selected option does not correspond to any of the list
+                System.out.println("Incorrect Option");
                 break;
         }
     }
@@ -207,9 +209,9 @@ public class Main {
 
         bookToArray = books.getFileData().toArray(new Book[books.getFileData().size()]);
 
-        // Para la busqueda, primero se imprime las opciones
+        // before to do the search the options is printed
         System.out.println(BookSearchEnum.listAllOptions());
-        // se espera que el usuario seleccione su opcion
+        // The user is expected to imput one option
         int bookSortOption = myInput.getUserInt("Select option --> ", 1, BookSearchEnum.values().length);
         switch (bookSortOption) {
             case 1:
@@ -219,8 +221,8 @@ public class Main {
                 mySortUtil.bubbleSortByBookTitle(bookToArray);
                 break;
             default:
-                // Si la opcion seleccionada no corresponde a ninguna de la lista 
-                System.out.println("Option incorrect");
+                // If the selected option does not correspond to any of the list
+                System.out.println("Incorrect Option");
                 break;
         }
         for (int i = 0; i < bookToArray.length; i++) {
@@ -230,13 +232,13 @@ public class Main {
 
     public void searchStudents() {
 
-        // Para la busqueda, primero se imprime las opciones
+        // print the options
         System.out.println(StudentSearchEnum.listAllOptions());
-        // se espera que el usuario seleccione su opcion
+        // the user is expected to enter an option
         int studentSearchOption = myInput.getUserInt("Select option --> ", 1, StudentSearchEnum.values().length);
         switch (studentSearchOption) {
             case 1:
-                String studentName = myInput.getUserText("Input Student Name --> ");
+                String studentName = myInput.getUserText("Input Student's Full Name --> ");
                 int linearSearchStudent = mySearchUtil.linearSearchStudentByName(students.getFileData(), studentName);
                 if (linearSearchStudent > -1) {
                     System.out.println("Student match with --> " + students.getFileData().get(linearSearchStudent).toString());
@@ -245,7 +247,7 @@ public class Main {
                 }
                 break;
             case 2:
-                int studentId = myInput.getUserInt("Input Student id --> ", 1);
+                int studentId = myInput.getUserInt("Input Student's id --> ", 1);
                 sortStudents();
 
                 int studentById = mySearchUtil.binarySearch(students.getFileData(), studentId);
@@ -257,8 +259,8 @@ public class Main {
 
                 break;
             default:
-                // Si la opcion seleccionada no corresponde a ninguna de la lista
-                System.out.println("Option incorrect");
+                // If the selected option does not correspond to any of the list
+                System.out.println("Incorrect Option");
                 break;
         }
     }
@@ -267,9 +269,9 @@ public class Main {
 
         studentToArray = students.getFileData().toArray(new Student[students.getFileData().size()]);
 
-        // Para la busqueda, primero se imprime las opciones
+       
         System.out.println(StudentSearchEnum.listAllOptions());
-        // se espera que el usuario seleccione su opcion
+       
         int studentSortOption = myInput.getUserInt("Select option --> ", 1, StudentSearchEnum.values().length);
         switch (studentSortOption) {
             case 1:
@@ -279,8 +281,8 @@ public class Main {
                 mySortUtil.mergeSortStudentById(studentToArray, 0, studentToArray.length - 1);
                 break;
             default:
-                // Si la opcion seleccionada no corresponde a ninguna de la lista 
-                System.out.println("Option incorrect");
+                
+                System.out.println("Incorrect Option");
                 break;
         }
         for (int i = 0; i < studentToArray.length; i++) {
@@ -289,14 +291,14 @@ public class Main {
     }
 
     public void borrowingBooks() {
-        // Para la busqueda, primero se imprime las opciones
+       
         System.out.println(BorrowingSearchEnum.listAllOptions());
-        // se espera que el usuario seleccione su opcion
+        
         int borrowingSearchOption = myInput.getUserInt("Select option --> ", 1, BorrowingSearchEnum.values().length);
         switch (borrowingSearchOption) {
             case 1:
                 Borrowing registerBorrowing = new Borrowing();
-                String authorname = myInput.getUserText("Input Author Name --> ");
+                String authorname = myInput.getUserText("Input Author Full Name --> ");
                 int linearSearchBook = mySearchUtil.linearSearchBookByAuthor(books.getFileData(), authorname);
                 if (linearSearchBook > -1) {
 
@@ -357,8 +359,8 @@ public class Main {
                                     System.out.println("The reservation has been canceled");
                                     break;
                                 default:
-                                    // Si la opcion seleccionada no corresponde a ninguna de la lista 
-                                    System.out.println("Option incorrect");
+                                    // If the selected option does not correspond to any of the list
+                                    System.out.println("Incorrect Option");
                                     break;
                             }
                         } else {
@@ -374,7 +376,7 @@ public class Main {
                 }
                 break;
             case 2:
-                String returnAuthorName = myInput.getUserText("Input Author Name --> ");
+                String returnAuthorName = myInput.getUserText("Input Author Full Name --> ");
                 int returnBookSearch = mySearchUtil.linearSearchBookByAuthor(books.getFileData(), returnAuthorName);
                 if (returnBookSearch > -1) {
                     Book bok = books.getFileData().get(returnBookSearch);
@@ -411,8 +413,8 @@ public class Main {
 
                 break;
             default:
-                // Si la opcion seleccionada no corresponde a ninguna de la lista
-                System.out.println("Option incorrect");
+                // If the selected option does not correspond to any of the list
+                System.out.println("Incorrect Option");
                 break;
         }
     }

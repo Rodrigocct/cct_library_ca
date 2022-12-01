@@ -9,14 +9,15 @@ import java.io.Serializable;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
-public class Student implements Serializable{
-    int id;    
+public class Student implements Serializable {
+
+    int id;
     String firstname;
     String surname;
     String documentNumber;
-    String genre;
+    String gender;
     String birthday;
 
     public int getId() {
@@ -51,12 +52,12 @@ public class Student implements Serializable{
         this.documentNumber = documentNumber;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getBirthday() {
@@ -69,11 +70,11 @@ public class Student implements Serializable{
 
     @Override
     public String toString() {
-        return id + "," + firstname + "," + surname + "," + documentNumber + "," + genre + "," + birthday;
+        return id + "," + firstname + "," + surname + "," + documentNumber + "," + gender + "," + birthday;
     }
-    
+
     public int compareToByName(Student student) {
         return (this.getFirstname() + " " + this.getSurname()).compareTo(student.getFirstname() + " " + student.getSurname());
     }
-    
+
 }

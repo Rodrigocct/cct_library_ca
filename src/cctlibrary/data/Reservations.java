@@ -18,14 +18,15 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
+//an extension of the principal class file so it inherit the methods and atributes.
 public class Reservations extends File {
 
-    ArrayList<Reservation> fileData = new ArrayList<>();
+    ArrayList<Reservation> fileData = new ArrayList<>();//array to save reservation
 
     public Reservations() {
-        this.fileName = "data/RESERVATIONS_DATA.csv";
+        this.fileName = "data/RESERVATIONS_DATA.csv";// file to register reservations
     }
 
     public ArrayList<Reservation> getFileData() {
@@ -37,6 +38,7 @@ public class Reservations extends File {
     }
 
     @Override
+    //to read the data from RESERVATIONS_DATA, if there is data it will load
     public void loadData() {
         String[] data;
         try {
@@ -68,14 +70,17 @@ public class Reservations extends File {
     }
 
     @Override
+    
+    //to register the borrowing
     public void saveData() {
         try {
             saveFile = new DataOutputStream(new FileOutputStream(fileName));
             for (Reservation r : this.getFileData()) {
                 for (int i = 0; i < r.getStudents().size(); i++) {
-                    saveFile.writeBytes(r.getBookId() + "," + r.getStudents().getData()[i] + "\n");
+                    saveFile.writeBytes(r.getBookId() + "," + r.getStudents().getData()[i] + "\n");//to storage in the memory
                 }
-            }
+            } 
+            //to write and register the reservation
             saveFile.flush();
             saveFile.close();
         } catch (FileNotFoundException ex) {

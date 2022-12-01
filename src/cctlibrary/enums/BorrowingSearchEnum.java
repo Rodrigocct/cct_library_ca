@@ -25,7 +25,7 @@ public enum BorrowingSearchEnum {
             return "REGISTER RETURN";
         }        
     };
-    // Metodo que recupera una opcion de busqueda especifica en funcion a su posicion en el array
+    // A method that retrieves a specific lookup option in function of its position in the array
     public static BorrowingSearchEnum getOption(int option){
         
         BorrowingSearchEnum[] searchOption = BorrowingSearchEnum.values();
@@ -33,7 +33,7 @@ public enum BorrowingSearchEnum {
         return searchOption[option];
     }
     
-    // Metodo que retorna la lista completa de opciones de filtro
+    // Method that returns the full list of filter options
     public static String listAllOptions(){
         
         String menu = "";

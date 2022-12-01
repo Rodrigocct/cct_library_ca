@@ -10,13 +10,15 @@ import cctlibrary.entities.Student;
 import java.util.ArrayList;
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
 public class MySearchingUtils {
 
     /*
         BOOKS SECTION
+    to search by author
     */
+    
     public int linearSearchBookByAuthor(ArrayList<Book> array, String target) {
         for (int i = 0; i < array.size(); i++) {
             String authorName = array.get(i).getAuthorFirstName() + " " + array.get(i).getAuthorLastName();
@@ -26,6 +28,7 @@ public class MySearchingUtils {
         }
         return -1;
     }
+    //to search by title
     
     public ArrayList<Book> linearSearchBookByTitle(ArrayList<Book> array, String target) {
         ArrayList<Book> result = new ArrayList<>();
@@ -40,7 +43,9 @@ public class MySearchingUtils {
     
     /*
         STUDENTS SECTION
+    to search student by name
     */    
+    
     public int linearSearchStudentByName(ArrayList<Student> array, String target) {
         for (int i = 0; i < array.size(); i++) {
             String name = array.get(i).getFirstname() + " " + array.get(i).getSurname();

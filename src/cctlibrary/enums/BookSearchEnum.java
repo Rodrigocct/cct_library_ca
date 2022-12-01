@@ -7,8 +7,9 @@ package cctlibrary.enums;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  * Enum Books search Options
+ * it goes with inside enum because we now the values won't change
  */
 public enum BookSearchEnum {
     AUTHOR_NAME {
@@ -25,7 +26,7 @@ public enum BookSearchEnum {
             return "TITLE";
         }        
     };
-    // Metodo que recupera una opcion de busqueda especifica en funcion a su posicion en el array
+    // A method that retrieves a specific lookup option in function of its position in the array
     public static BookSearchEnum getOption(int option){
         
         BookSearchEnum[] searchOption = BookSearchEnum.values();
@@ -33,12 +34,12 @@ public enum BookSearchEnum {
         return searchOption[option];
     }
     
-    // Metodo que retorna la lista completa de opciones de filtro
+    // Method that returns the full list of filter options
     public static String listAllOptions(){
         
         String menu = "";
         
-        int num = 1; //start at 1 because starting at 0 makes no sense to humans :)
+        int num = 1; //start at 1 because starting at 0 makes no sense to humans 
         //loop through all values in the enum
         for(BookSearchEnum e: values()){            
             menu = menu + "\n" + num + ")\t" + e.toString();

@@ -18,14 +18,15 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
-public class Students extends File {
+//an extension of the principal class file so it inherit the methods and atributes.
+public class Students extends File { 
 
     ArrayList<Student> fileData = new ArrayList<>();
 
     public Students() {
-        this.fileName = "data/STUDENTS_DATA.csv";
+        this.fileName = "data/STUDENTS_DATA.csv";//to simplify the job we just use a student list from previos semester.
     }
 
     public ArrayList<Student> getFileData() {
@@ -38,6 +39,7 @@ public class Students extends File {
     
 
     @Override
+    //read the data from STUDENTS_DATA.csv
     public void loadData() {
         String[] data;
         try {
@@ -51,7 +53,7 @@ public class Students extends File {
                 x.setFirstname(data[1]);
                 x.setSurname(data[2]);
                 x.setDocumentNumber(data[3]);
-                x.setGenre(data[4]);
+                x.setGender(data[4]);
                 x.setBirthday(data[5]);
                 this.fileData.add(x);
                 contentLine = readFile.readLine();
@@ -62,6 +64,7 @@ public class Students extends File {
     }
 
     @Override
+    //to register the borrowing details
     public void saveData() {
         try {
             saveFile = new DataOutputStream(new FileOutputStream(fileName));   

@@ -18,14 +18,16 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
+//an extension of the principal class file so it inherit the methods and atributes.
+// this class is to read the content inside the file books_data.csv
 public class Books extends File {
 
-    ArrayList<Book> fileData = new ArrayList<>();
+    ArrayList<Book> fileData = new ArrayList<>(); // array where we will store the data from the file
 
     public Books() {
-        this.fileName = "data/BOOKS_DATA.csv";
+        this.fileName = "data/BOOKS_DATA.csv"; //file with data about books
     }
 
     public ArrayList<Book> getFileData() {
@@ -37,6 +39,7 @@ public class Books extends File {
     }
     
     @Override
+    // we implement loadData to read the file line by line and store the data in the array 
     public void loadData() {
         String[] data;
         try {
@@ -59,6 +62,7 @@ public class Books extends File {
         }
     }
     @Override
+    //to storage the data in the file
     public void saveData() {
         try {
             saveFile = new DataOutputStream(new FileOutputStream(fileName));   

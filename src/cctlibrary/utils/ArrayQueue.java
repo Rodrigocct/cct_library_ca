@@ -1,6 +1,6 @@
 package cctlibrary.utils;
 
-
+//to define the methods implemented in the classes that uses this interface
 public interface ArrayQueue {
 
     /**

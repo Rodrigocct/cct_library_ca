@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
  */
 public class Borrowing implements Serializable{
 

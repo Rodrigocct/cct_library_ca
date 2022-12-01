@@ -10,8 +10,12 @@ import cctlibrary.entities.Student;
 
 /**
  *
- * @author rodrigo
+ * @author rodrigo & anastasiia
+ * 
+ * 
  */
+
+//both sorting methods: bubbleSort and mergeSort we got from the example done in class
 public class MySortingUtils {
 
     public void bubbleSortByBookAuthor(Book[] array) {
